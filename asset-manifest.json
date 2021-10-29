@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/rabblepop/static/css/main.2f3dbdb7.chunk.css",
+    "main.js": "/rabblepop/static/js/main.d0469eca.chunk.js",
+    "main.js.map": "/rabblepop/static/js/main.d0469eca.chunk.js.map",
+    "runtime-main.js": "/rabblepop/static/js/runtime-main.a2261ae1.js",
+    "runtime-main.js.map": "/rabblepop/static/js/runtime-main.a2261ae1.js.map",
+    "static/js/2.1c72c03a.chunk.js": "/rabblepop/static/js/2.1c72c03a.chunk.js",
+    "static/js/2.1c72c03a.chunk.js.map": "/rabblepop/static/js/2.1c72c03a.chunk.js.map",
+    "static/js/3.09a0131d.chunk.js": "/rabblepop/static/js/3.09a0131d.chunk.js",
+    "static/js/3.09a0131d.chunk.js.map": "/rabblepop/static/js/3.09a0131d.chunk.js.map",
+    "index.html": "/rabblepop/index.html",
+    "static/css/main.2f3dbdb7.chunk.css.map": "/rabblepop/static/css/main.2f3dbdb7.chunk.css.map",
+    "static/js/2.1c72c03a.chunk.js.LICENSE.txt": "/rabblepop/static/js/2.1c72c03a.chunk.js.LICENSE.txt",
+    "static/media/profile.aa859487.jpg": "/rabblepop/static/media/profile.aa859487.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2261ae1.js",
+    "static/js/2.1c72c03a.chunk.js",
+    "static/css/main.2f3dbdb7.chunk.css",
+    "static/js/main.d0469eca.chunk.js"
+  ]
+}
