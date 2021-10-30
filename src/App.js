@@ -1,4 +1,5 @@
 import ActionList from "./comp/ActionList";
+import AddOption from "./comp/AddOption";
 import Body from "./comp/Body";
 import Navbar from "./comp/Navbar";
 import PostedDate from "./comp/PostedDate";
@@ -48,6 +49,8 @@ function App() {
 
         <ActionList actions={actionList}
         />
+
+        <AddOption />
 
       </div>
 
