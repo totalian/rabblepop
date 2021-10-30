@@ -20,7 +20,7 @@ function App() {
     }
   )
 
-  const actionList = [
+  const [actionList,setActionList] = useState([
     {
       text:"Do this",
       user:"Zeki",
@@ -36,14 +36,18 @@ function App() {
       user:"Eren",
       image:profile,
     }
-  ]
+  ])
 
   const [showAddOptions,setShowAddOptions] = useState(false)
+
+  const addOption = ({ text, user="Zeki Mirza", image=profile }) => {
+    return setActionList([...actionList,{text,user,image}])
+  }
 
   return (
     <div className="App">
       <Navbar />
-
+    
       <div className="xl:w-2/6 lg:w-3/6 w-full mx-auto h-full min-h-screen bg-gray-100 flex flex-col gap-4 px-8 pt-8 ">
 
         <div className="w-full flex items-center justify-between">
@@ -64,9 +68,9 @@ function App() {
         />
 
         {showAddOptions && <AddOption
-        onCancelAddOption={e => {
-          e.preventDefault()
-          setShowAddOptions(false)}}
+        hideModal={() => setShowAddOptions(false)}
+
+        onAddOption = {addOption}
         />}
 
       </div>  
