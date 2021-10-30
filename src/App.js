@@ -6,6 +6,7 @@ import PostedDate from "./comp/PostedDate";
 import Title from "./comp/Title";
 import UserTag from "./comp/UserTag";
 import profile from './profile.jpg'
+import { useState } from "react";
 
 function App() {
 
@@ -26,6 +27,8 @@ function App() {
       image:profile,
     }
   ]
+
+  const [showAddOptions,setShowAddOptions] = useState(false)
 
   return (
     <div className="App">
@@ -48,9 +51,14 @@ function App() {
         />
 
         <ActionList actions={actionList}
+        onAddOption={() => setShowAddOptions(true)}
         />
 
-        <AddOption />
+        {showAddOptions && <AddOption
+        onCancelAddOption={e => {
+          e.preventDefault()
+          setShowAddOptions(false)}}
+        />}
 
       </div>
 

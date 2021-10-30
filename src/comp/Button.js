@@ -1,6 +1,6 @@
-const Button = ({text, bgColor = "black", textColor = "white"}) => {
+const Button = ({ text, bgColor = "black", textColor = "white", clickHandler = (e) => e.preventDefault() }) => {
   return (
-    <button className={`text-${textColor} bg-${bgColor} px-2 rounded`}>{text}</button>
+    <button onClick={clickHandler} className={`text-${textColor} bg-${bgColor} px-2 rounded`}>{text}</button>
   )
 }
 

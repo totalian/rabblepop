@@ -1,7 +1,9 @@
 import Action from "./Action"
 import Button from "./Button"
 
-const ActionList = ({actions}) => {
+
+
+const ActionList = ({actions, onAddOption}) => {
   return (
     <div>
       <div className="border-b border-gray-400 pb-2 flex justify-between">
@@ -9,6 +11,7 @@ const ActionList = ({actions}) => {
         <Button
         text="Add Option"
         bgColor="green-800"
+        clickHandler={onAddOption}
         />
       </div>
       <div className="mt-4 flex flex-col gap-4">
