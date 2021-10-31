@@ -1,6 +1,6 @@
-const Action = ({action}) => {
+const Action = ({action, onSelectAction}) => {
   return (
-    <div className="flex gap-2 hover:shadow hover:border-gray-400 py-2">
+    <div className="flex gap-2 hover:shadow hover:border-gray-400 py-2" onClick={() => onSelectAction(action.destination)}>
       <div className="w-8 h-8 rounded-full overflow-hidden">
         <img src={action.image} alt="" />
       </div>

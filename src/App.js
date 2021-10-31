@@ -91,9 +91,11 @@ function App() {
       const newActionRef = doc(db,"pages",pageId,"actions",newActionId)
       await setDoc(newActionRef,{source: pageId, destination: newPageId},{merge:true})
 
+      setActionList([ { text, user, image, source:pageId, destination:newPageId }, ...actionList])
     })()
-    setActionList([ { text, user, image }, ...actionList])
   }
+
+  const selectAction = newPageId => setPageId(newPageId)
 
   return (
     <div className="App">
@@ -115,6 +117,7 @@ function App() {
 
         <ActionList actions={actionList}
           onAddOption={() => setShowAddOptions(true)}
+          onSelectAction={selectAction}
         />
 
         {showAddOptions && <AddOption
