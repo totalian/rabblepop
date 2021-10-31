@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/rabblepop/static/css/main.8cb0a675.chunk.css",
-    "main.js": "/rabblepop/static/js/main.c73faac5.chunk.js",
-    "main.js.map": "/rabblepop/static/js/main.c73faac5.chunk.js.map",
+    "main.js": "/rabblepop/static/js/main.897171bc.chunk.js",
+    "main.js.map": "/rabblepop/static/js/main.897171bc.chunk.js.map",
     "runtime-main.js": "/rabblepop/static/js/runtime-main.94cc1bdf.js",
     "runtime-main.js.map": "/rabblepop/static/js/runtime-main.94cc1bdf.js.map",
     "static/js/2.2fedbe8e.chunk.js": "/rabblepop/static/js/2.2fedbe8e.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.94cc1bdf.js",
     "static/js/2.2fedbe8e.chunk.js",
     "static/css/main.8cb0a675.chunk.css",
-    "static/js/main.c73faac5.chunk.js"
+    "static/js/main.897171bc.chunk.js"
   ]
 }
