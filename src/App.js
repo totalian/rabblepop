@@ -8,7 +8,7 @@ import UserTag from "./comp/UserTag";
 import profile from './profile.jpg'
 import { useState, useEffect } from "react";
 import db from "./firebase/config";
-import { collection, getDoc, doc, getDocs } from "firebase/firestore"
+import { collection, getDoc, doc, getDocs, addDoc, setDoc } from "firebase/firestore"
 
 function App() {
 
@@ -45,11 +45,8 @@ function App() {
   const [showAddOptions, setShowAddOptions] = useState(false)
 
   const fetchPage = async (id) => {
-    setLoading(true)
     const docRef = doc(db,"pages",id)
     const docSnap = await getDoc(docRef)
-    setLoading(false)
-    console.log(docSnap.data())
     return docSnap.data()
   }
 
@@ -63,16 +60,39 @@ function App() {
 
   useEffect(() => {
     (async () => {
+      setLoading(true)
       const data = await fetchPage(pageId)
       setPageDetails(data)
 
       const actionList = await fetchActions(pageId)
       setActionList(actionList)
+      setLoading(false)
     })()
   },[pageId])
 
-  const addOption = ({ text, user = "Zeki Mirza", image = profile }) => {
-    return setActionList([...actionList, { text, user, image }])
+  const addOption = ({ text, user = "Zeki Mirza", image = profile, body }) => {
+    (async () => {
+      const currentPageActionsRef = collection(db,"pages",pageId,"actions")
+      const pagesRef = collection(db,"pages")
+
+      // add action to current page
+      const newActionDoc = await addDoc(currentPageActionsRef,{ text, user, image })
+      const newActionId = newActionDoc.id
+
+      // create page with data from new body
+      const newPageDoc = await addDoc(pagesRef,{
+        title: text,
+        user,
+        body
+      })
+      const newPageId = newPageDoc.id 
+
+      // add source and destination to action
+      const newActionRef = doc(db,"pages",pageId,"actions",newActionId)
+      await setDoc(newActionRef,{source: pageId, destination: newPageId},{merge:true})
+
+    })()
+    setActionList([ { text, user, image }, ...actionList])
   }
 
   return (

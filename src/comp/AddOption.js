@@ -26,7 +26,7 @@ const AddOption = ({ hideModal, onAddOption }) => {
             clickHandler={e => {
               e.preventDefault()
               if (actionTitle && actionOutcome) {
-                onAddOption({ text: actionTitle })
+                onAddOption({ text: actionTitle, body: actionOutcome })
                 hideModal()
               }
             }
