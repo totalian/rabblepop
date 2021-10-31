@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/rabblepop/static/css/main.ff11ce32.chunk.css",
-    "main.js": "/rabblepop/static/js/main.8e814564.chunk.js",
-    "main.js.map": "/rabblepop/static/js/main.8e814564.chunk.js.map",
+    "main.css": "/rabblepop/static/css/main.8cb0a675.chunk.css",
+    "main.js": "/rabblepop/static/js/main.c73faac5.chunk.js",
+    "main.js.map": "/rabblepop/static/js/main.c73faac5.chunk.js.map",
     "runtime-main.js": "/rabblepop/static/js/runtime-main.94cc1bdf.js",
     "runtime-main.js.map": "/rabblepop/static/js/runtime-main.94cc1bdf.js.map",
     "static/js/2.2fedbe8e.chunk.js": "/rabblepop/static/js/2.2fedbe8e.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.5b9c9fca.chunk.js": "/rabblepop/static/js/3.5b9c9fca.chunk.js",
     "static/js/3.5b9c9fca.chunk.js.map": "/rabblepop/static/js/3.5b9c9fca.chunk.js.map",
     "index.html": "/rabblepop/index.html",
-    "static/css/main.ff11ce32.chunk.css.map": "/rabblepop/static/css/main.ff11ce32.chunk.css.map",
+    "static/css/main.8cb0a675.chunk.css.map": "/rabblepop/static/css/main.8cb0a675.chunk.css.map",
     "static/js/2.2fedbe8e.chunk.js.LICENSE.txt": "/rabblepop/static/js/2.2fedbe8e.chunk.js.LICENSE.txt",
     "static/media/profile.aa859487.jpg": "/rabblepop/static/media/profile.aa859487.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.94cc1bdf.js",
     "static/js/2.2fedbe8e.chunk.js",
-    "static/css/main.ff11ce32.chunk.css",
-    "static/js/main.8e814564.chunk.js"
+    "static/css/main.8cb0a675.chunk.css",
+    "static/js/main.c73faac5.chunk.js"
   ]
 }
