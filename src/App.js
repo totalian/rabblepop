@@ -8,7 +8,7 @@ import UserTag from "./comp/UserTag";
 import profile from './profile.jpg'
 import { useState, useEffect } from "react";
 import db from "./firebase/config";
-import { collection, getDoc, doc } from "firebase/firestore"
+import { collection, getDoc, doc, getDocs } from "firebase/firestore"
 
 function App() {
 
@@ -49,13 +49,25 @@ function App() {
     const docRef = doc(db,"pages",id)
     const docSnap = await getDoc(docRef)
     setLoading(false)
+    console.log(docSnap.data())
     return docSnap.data()
+  }
+
+  const fetchActions = async (id) => {
+    const actionList = []
+    const actionRef = collection(db,"pages",id,"actions")
+    const actions = await getDocs(actionRef)
+    actions.forEach(doc => actionList.push(doc.data()))
+    return actionList
   }
 
   useEffect(() => {
     (async () => {
       const data = await fetchPage(pageId)
       setPageDetails(data)
+
+      const actionList = await fetchActions(pageId)
+      setActionList(actionList)
     })()
   },[pageId])
 
