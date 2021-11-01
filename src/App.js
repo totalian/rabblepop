@@ -26,7 +26,7 @@ function App() {
   )
   const [actionList, setActionList] = useState([
     {
-      text: "Do this",
+      text: "Do this",  
       user: "Zeki",
       image: profile,
     },
@@ -126,6 +126,8 @@ function App() {
           onAddOption={addOption}
         />}
 
+        {/* Here just because of tailwind purge */}
+      <span className="bg-red-500 hidden"></span>    
       </div>
 
     </div>
