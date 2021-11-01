@@ -112,13 +112,13 @@ function App() {
         />
 
         <Body
-          text={pageDetails.body}
+          text={loading ? "Loading" : pageDetails.body}
         />
 
-        <ActionList actions={actionList}
+        {loading || <ActionList actions={actionList}
           onAddOption={() => setShowAddOptions(true)}
           onSelectAction={selectAction}
-        />
+        />}
 
         {showAddOptions && <AddOption
           hideModal={() => setShowAddOptions(false)}

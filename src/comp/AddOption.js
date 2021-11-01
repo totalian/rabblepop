@@ -8,7 +8,7 @@ const AddOption = ({ hideModal, onAddOption }) => {
 
   return (
     <div className="fixed z-10 left-0 top-0 w-full h-screen bg-black bg-opacity-40">
-      <form action="" className="xl:w-3/6 lg:w-5/6 w-full mx-auto lg:mt-12 rounded lg:h-5/6 h-screen bg-white flex flex-col items-center justify-evenly">
+      <form action="" className="xl:w-3/6 lg:w-5/6 w-full mx-auto lg:mt-12 h-full rounded lg:h-5/6 bg-white flex flex-col items-center justify-evenly overflow-y-hidden">
 
         <h2 className="text-lg font-bold">What happens next?</h2>
 
