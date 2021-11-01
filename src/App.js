@@ -9,12 +9,13 @@ import profile from './profile.jpg'
 import { useState, useEffect } from "react";
 import db from "./firebase/config";
 import { collection, getDoc, doc, getDocs, addDoc, setDoc } from "firebase/firestore"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
 
   const [loading, setLoading] = useState(false)
 
-  const [pageId,setPageId] = useState("L4Aoe0aPLKtvHPICd9YD")
+  const [pageId, setPageId] = useState("L4Aoe0aPLKtvHPICd9YD")
 
   const [pageDetails, setPageDetails] = useState(
     {
@@ -26,7 +27,7 @@ function App() {
   )
   const [actionList, setActionList] = useState([
     {
-      text: "Do this",  
+      text: "Do this",
       user: "Zeki",
       image: profile,
     },
@@ -45,14 +46,14 @@ function App() {
   const [showAddOptions, setShowAddOptions] = useState(false)
 
   const fetchPage = async (id) => {
-    const docRef = doc(db,"pages",id)
+    const docRef = doc(db, "pages", id)
     const docSnap = await getDoc(docRef)
     return docSnap.data()
   }
 
   const fetchActions = async (id) => {
     const actionList = []
-    const actionRef = collection(db,"pages",id,"actions")
+    const actionRef = collection(db, "pages", id, "actions")
     const actions = await getDocs(actionRef)
     actions.forEach(doc => actionList.push(doc.data()))
     return actionList
@@ -68,69 +69,76 @@ function App() {
       setActionList(actionList)
       setLoading(false)
     })()
-  },[pageId])
+  }, [pageId])
 
   const addOption = ({ text, user = "Zeki Mirza", image = profile, body }) => {
     (async () => {
-      const currentPageActionsRef = collection(db,"pages",pageId,"actions")
-      const pagesRef = collection(db,"pages")
+      const currentPageActionsRef = collection(db, "pages", pageId, "actions")
+      const pagesRef = collection(db, "pages")
 
       // add action to current page
-      const newActionDoc = await addDoc(currentPageActionsRef,{ text, user, image })
+      const newActionDoc = await addDoc(currentPageActionsRef, { text, user, image })
       const newActionId = newActionDoc.id
 
       // create page with data from new body
-      const newPageDoc = await addDoc(pagesRef,{
+      const newPageDoc = await addDoc(pagesRef, {
         title: text,
         user,
-        body
+        body,
+        previousPage:pageId,
+        sourceAction:newActionId
       })
-      const newPageId = newPageDoc.id 
+      const newPageId = newPageDoc.id
 
       // add source and destination to action
-      const newActionRef = doc(db,"pages",pageId,"actions",newActionId)
-      await setDoc(newActionRef,{source: pageId, destination: newPageId},{merge:true})
+      const newActionRef = doc(db, "pages", pageId, "actions", newActionId)
+      await setDoc(newActionRef, { source: pageId, destination: newPageId }, { merge: true })
 
-      setActionList([ { text, user, image, source:pageId, destination:newPageId }, ...actionList])
+      setActionList([{ text, user, image, source: pageId, destination: newPageId }, ...actionList])
     })()
   }
 
   const selectAction = newPageId => setPageId(newPageId)
 
   return (
-    <div className="App">
-      <Navbar />
-      <div className="xl:w-2/6 lg:w-3/6 w-full mx-auto h-full min-h-screen bg-gray-100 flex flex-col gap-4 px-8 pt-8 ">
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route path={`/`}>
+            <div className="xl:w-2/6 lg:w-3/6 w-full mx-auto h-full min-h-screen bg-gray-100 flex flex-col gap-4 px-8 pt-8 ">
 
-        <div className="w-full flex items-center justify-between">
-          <UserTag userName={pageDetails.user} img={profile} />
-          <PostedDate date={pageDetails.date} />
-        </div>
+              <div className="w-full flex items-center justify-between">
+                <UserTag userName={pageDetails.user} img={profile} />
+                <PostedDate date={pageDetails.date} />
+              </div>
 
-        <Title
-          text={pageDetails.title}
-        />
+              <Title
+                text={pageDetails.title}
+              />
 
-        <Body
-          text={loading ? "Loading" : pageDetails.body}
-        />
+              <Body
+                text={loading ? "Loading" : pageDetails.body}
+              />
 
-        {loading || <ActionList actions={actionList}
-          onAddOption={() => setShowAddOptions(true)}
-          onSelectAction={selectAction}
-        />}
+              {loading || <ActionList actions={actionList}
+                onAddOption={() => setShowAddOptions(true)}
+                onSelectAction={selectAction}
+              />}
 
-        {showAddOptions && <AddOption
-          hideModal={() => setShowAddOptions(false)}
+              {showAddOptions && <AddOption
+                hideModal={() => setShowAddOptions(false)}
 
-          onAddOption={addOption}
-        />}
+                onAddOption={addOption}
+              />}
 
-        {/* Here just because of tailwind purge */}
-      <span className="bg-red-500 hidden"></span>    
+              {/* Here just because of tailwind purge */}
+              <span className="bg-red-800 hidden"></span>
+            </div>
+          </Route>
+        </Switch>
       </div>
-
-    </div>
+    </Router>
   );
 }
 
