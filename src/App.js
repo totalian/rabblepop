@@ -15,6 +15,8 @@ function App() {
 
   const [loading, setLoading] = useState(false)
 
+  const [error, setError] = useState(false)
+
   const [pageId, setPageId] = useState("L4Aoe0aPLKtvHPICd9YD")
 
   const [pageDetails, setPageDetails] = useState(
@@ -63,7 +65,9 @@ function App() {
     (async () => {
       setLoading(true)
       const data = await fetchPage(pageId)
-      setPageDetails(data)
+      if(data){setPageDetails(data)} else {
+        setError(true)
+      }
 
       const actionList = await fetchActions(pageId)
       setActionList(actionList)
@@ -100,6 +104,13 @@ function App() {
 
   const selectAction = newPageId => setPageId(newPageId)
 
+  // handle going directly to a URL
+  const currentPageUrl = window.location.href.split("/")
+  const currentPageId = currentPageUrl[currentPageUrl.length - 1]
+  useEffect(() => {
+    setPageId(currentPageId)
+  },[currentPageId])
+
   return (
     <Router>
       <div className="App">
@@ -114,11 +125,11 @@ function App() {
               </div>
 
               <Title
-                text={pageDetails.title}
+                text={loading || error ? "Loading" : pageDetails.title}
               />
 
               <Body
-                text={loading ? "Loading" : pageDetails.body}
+                text={loading || error ? "Loading" : pageDetails.body}
               />
 
               {loading || <ActionList actions={actionList}
