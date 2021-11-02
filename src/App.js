@@ -72,7 +72,7 @@ function App() {
       const actionList = await fetchActions(pageId)
       setActionList(actionList)
       setLoading(false)
-    })()
+    })().catch(() => setPageId("L4Aoe0aPLKtvHPICd9YD"))
   }, [pageId])
 
   const addOption = ({ text, user = "Zeki Mirza", image = profile, body }) => {
